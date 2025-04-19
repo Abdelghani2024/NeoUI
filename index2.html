@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoFuturistic Web UI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    :root {
+      --bg-main: #0f0f1a;
+      --color-accent: #0ff;
+      --color-text: #eee;
+      --color-muted: #aaa;
+      --bg-dark: #000;
+      --transition: 0.3s ease-in-out;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(ellipse at top, var(--bg-main), var(--bg-dark));
+      color: var(--color-text);
+      overflow-x: hidden;
+      transition: var(--transition);
+    }
+    body.dark-mode {
+      background: #000;
+      color: #ccc;
+    }
+    header {
+      background: rgba(0,0,0,0.8);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--color-accent);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--color-accent);
+    }
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--color-text);
+      transition: var(--transition);
+      position: relative;
+    }
+    nav a:hover {
+      color: var(--color-accent);
+      transform: scale(1.1);
+      text-shadow: 0 0 10px var(--color-accent);
+    }
+    .theme-toggle {
+      cursor: pointer;
+      color: var(--color-accent);
+      margin-left: 2rem;
+      transition: var(--transition);
+    }
+    .theme-toggle:hover {
+      transform: rotate(20deg);
+    }
+    .login-box, .signup-box {
+      max-width: 400px;
+      margin: 2rem auto;
+      background: #111;
+      border: 1px solid var(--color-accent);
+      border-radius: 10px;
+      padding: 1rem 2rem;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+      position: relative;
+    }
+    .login-box h3, .signup-box h3 {
+      color: var(--color-accent);
+      text-align: center;
+    }
+    .login-box input, .signup-box input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      background: #222;
+      color: var(--color-text);
+      border: none;
+      border-radius: 5px;
+      transition: var(--transition);
+    }
+    .login-box input:hover, .signup-box input:hover {
+      box-shadow: 0 0 10px var(--color-accent);
+    }
+    .login-box button, .signup-box button {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--color-accent);
+      border: none;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .login-box button:hover, .signup-box button:hover {
+      background: #0cc;
+    }
+    .profile-box {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #111;
+      border: 1px solid var(--color-accent);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,255,255,0.1);
+    }
+    .profile-box h3 {
+      color: var(--color-accent);
+      text-align: center;
+    }
+    .profile-box input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      background: #222;
+      color: var(--color-text);
+      border: none;
+      border-radius: 5px;
+    }
+    .profile-box button {
+      width: 48%;
+      padding: 0.75rem;
+      background: var(--color-accent);
+      border: none;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin: 0.5rem;
+    }
+    .profile-box button:hover {
+      background: #0cc;
+    }
+    .profile-box img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-top: 10px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NeoFuturistic UI</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+  </header>
+
+  <div class="login-box" id="loginBox">
+    <h3>Login</h3>
+    <input type="email" id="login-email" placeholder="Enter Email" />
+    <input type="password" id="login-password" placeholder="Enter Password" />
+    <button onclick="login()">Login</button>
+    <div class="signup-link">
+      <a href="#" onclick="switchToSignup()">Don't have an account? <i class="fas fa-user-plus"></i> Sign Up</a>
+    </div>
+  </div>
+
+  <div class="signup-box" id="signupBox" style="display: none;">
+    <h3>Sign Up</h3>
+    <input type="text" id="signup-name" placeholder="Enter Full Name" />
+    <input type="email" id="signup-email" placeholder="Enter Email" />
+    <input type="password" id="signup-password" placeholder="Enter Password" />
+    <input type="password" id="signup-confirm" placeholder="Confirm Password" />
+    <button onclick="register()">Register</button>
+    <div class="signup-link">
+      <a href="#" onclick="switchToLogin()"><i class="fas fa-sign-in-alt"></i> Back to Login</a>
+    </div>
+  </div>
+
+  <div class="profile-box" style="display: none;" id="profileBox">
+    <h3>Edit Profile</h3>
+    <input type="text" id="edit-username" placeholder="Change Name" />
+    <input type="password" id="edit-password" placeholder="Change Password" />
+    <input type="password" id="edit-confirm-password" placeholder="Confirm New Password" />
+    <div class="file-upload">
+      <label for="profile-image">Change Profile Picture:</label>
+      <input type="file" id="profile-image" onchange="previewImage(event)" />
+      <img id="profile-preview" src="" alt="Profile Image Preview" style="display: none;" />
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+      <button onclick="saveProfile()">Save</button>
+      <button onclick="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    const hour = new Date().getHours();
+    if (hour >= 18 || hour < 6) document.body.classList.add('dark-mode');
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function switchToSignup() {
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('signupBox').style.display = 'block';
+    }
+
+    function switchToLogin() {
+      document.getElementById('signupBox').style.display = 'none';
+      document.getElementById('loginBox').style.display = 'block';
+    }
+
+    function previewImage(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById('profile-preview').src = e.target.result;
+        document.getElementById('profile-preview').style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function login() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      if (user && user.email === email && user.password === password) {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('profileBox').style.display = 'block';
+        document.getElementById('edit-username').value = user.name;
+      } else {
+        alert('Invalid login credentials');
+      }
+    }
+
+    function register() {
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const confirm = document.getElementById('signup-confirm').value;
+
+      if (!name || !email || !password || password !== confirm) {
+        alert("Please fill all fields correctly.");
+        return;
+      }
+
+      const user = { name, email, password };
+      localStorage.setItem('user', JSON.stringify(user));
+      alert("Account created! You can now log in.");
+      switchToLogin();
+    }
+
+    function saveProfile() {
+      const username = document.getElementById('edit-username').value;
+      const password = document.getElementById('edit-password').value;
+      const confirmPassword = document.getElementById('edit-confirm-password').value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords don't match!");
+        return;
+      }
+
+      let user = JSON.parse(localStorage.getItem('user'));
+      user.name = username;
+      user.password = password;
+      localStorage.setItem('user', JSON.stringify(user));
+
+      alert('Profile updated successfully!');
+    }
+
+    function cancelEdit() {
+      document.getElementById('profileBox').style.display = 'none';
+      document.getElementById('loginBox').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
