@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoFuturistic Web UI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(ellipse at top, #0f0f1a, #000);
+      color: #eee;
+      overflow-x: hidden;
+    }
+    header {
+      background: rgba(0,0,0,0.8);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #0ff;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #0ff;
+    }
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #eee;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #0ff;
+    }
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom right, #111, #222);
+      text-align: center;
+      position: relative;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      color: #0ff;
+      animation: glow 2s infinite alternate;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #aaa;
+    }
+    .matrix {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 4rem;
+      background: #111;
+    }
+    .feature {
+      background: #1a1a2e;
+      padding: 2rem;
+      border: 1px solid #0ff4;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #0ff3;
+      transition: transform 0.3s;
+    }
+    .feature:hover {
+      transform: scale(1.05);
+    }
+    .feature h3 {
+      color: #0ff;
+      margin-bottom: 1rem;
+    }
+    .special-touch {
+      background: repeating-linear-gradient(45deg, #0ff2, #0ff2 10px, #00f2 10px, #00f2 20px);
+      padding: 5rem 2rem;
+      text-align: center;
+      animation: neon-glow 3s infinite alternate;
+    }
+    .special-touch h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    }
+    .dashboard {
+      padding: 4rem 2rem;
+      background: #0d0d17;
+    }
+    .dashboard h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #0ff;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #181828;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00f5;
+      transition: all 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #0ff;
+    }
+    .terminal {
+      background: #000;
+      color: #0f0;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 5px;
+      height: 200px;
+      overflow-y: auto;
+      box-shadow: inset 0 0 10px #0f08;
+    }
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: 0.9rem;
+      border-top: 2px solid #0ff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NeoUI</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#features">Features</a>
+      <a href="#special">Special</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <canvas class="matrix"></canvas>
+    <div>
+      <h2>Step Into the Future of Web Design</h2>
+      <p>Experience a beautifully designed, highly interactive, and complex UI that leaves a lasting impression.</p>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="feature">
+      <h3>Interactive UI</h3>
+      <p>Every component responds smoothly and intuitively to user actions for maximum engagement.</p>
+    </div>
+    <div class="feature">
+      <h3>Modular Components</h3>
+      <p>Well-structured modular elements let you scale this template into a complete product.</p>
+    </div>
+    <div class="feature">
+      <h3>Futuristic Animations</h3>
+      <p>CSS & JavaScript powered effects that breathe life into your page.</p>
+    </div>
+  </section>
+
+  <section class="special-touch" id="special">
+    <h2>✨ Welcome to the Neo Dimension ✨</h2>
+  </section>
+
+  <section class="dashboard" id="dashboard">
+    <h2>User Dashboard</h2>
+    <div class="dashboard-grid">
+      <div class="card">
+        <h3>User Stats</h3>
+        <p>Visitors Today: <span id="visits">Loading...</span></p>
+      </div>
+      <div class="card">
+        <h3>Tasks</h3>
+        <ul>
+          <li>Design UI ✅</li>
+          <li>Integrate JS ⚙️</li>
+          <li>Deploy 🚀</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Live Feed</h3>
+        <p id="liveFeed">Initializing...</p>
+      </div>
+    </div>
+    <div class="terminal" id="terminal"></div>
+  </section>
+
+  <footer id="contact">
+    <p>Made with ❤️ by NeoUI. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Neon feature click effect
+    document.querySelectorAll('.feature').forEach(feature => {
+      feature.addEventListener('click', () => {
+        alert('🚀 Futuristic Feature Activated!');
+      });
+    });
+
+    // Simulated stats & feed
+    document.getElementById('visits').innerText = Math.floor(Math.random() * 1000 + 100);
+    const messages = ["User123 logged in", "New task added", "Server synced", "Error 404 intercepted"];
+    let i = 0;
+    setInterval(() => {
+      document.getElementById('liveFeed').innerText = messages[i % messages.length];
+      i++;
+    }, 3000);
+
+    // Fake terminal log
+    const terminal = document.getElementById('terminal');
+    const logs = [
+      'Initializing system...',
+      'Loading modules...',
+      'Connecting to neural grid...',
+      'Authenticating users...',
+      'NeoUI v1.0.0 initialized.'
+    ];
+    let logIndex = 0;
+    function logTerminal() {
+      if (logIndex < logs.length) {
+        terminal.innerHTML += `> ${logs[logIndex]}<br>`;
+        terminal.scrollTop = terminal.scrollHeight;
+        logIndex++;
+        setTimeout(logTerminal, 1000);
+      }
+    }
+    logTerminal();
+
+    // Matrix background
+    const canvas = document.querySelector('.matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = "01".split("");
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0f0";
+      ctx.font = fontSize + "px monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 33);
+  </script>
+</body>
+</html>
